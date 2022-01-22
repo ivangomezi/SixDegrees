@@ -1,0 +1,35 @@
+ <section class="wrapper">
+    <div class="container-wrapper">
+        <div class="brand-center">
+            <h1 style="font-size: 50px; font-weight: 700; letter-spacing: 1mm;">Bienvenido</h1>
+            <h1>Administrador de registros</h1>
+        </div>
+    </div>
+</section>
+
+<section class="container-content">
+
+    <h3 style=" 
+        text-align: center; 
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 1mm;">Lista de usuarios</h3>
+
+    <br>
+
+    <table class="table table-info">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of lista">
+          <td>{{t.usuId}}</td>
+          <td>{{t.nombre}} {{t.apellido}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+</section>

@@ -29,32 +29,33 @@ namespace SixDegressDatos
                     cmd.Parameters.Add(new SqlParameter("@nombre", "prueba"));
                     cmd.Parameters.Add(new SqlParameter("@apellido", "prueba"));
 
-                    //Usuarios response = null;
+                    Usuarios response = null;
+                    List<Usuarios> lista = new List<Usuarios>();
+
                     await sql.OpenAsync();
 
-                    List<Usuarios> response = new List<Usuarios>();
-
-                    using (var reader = await cmd.ExecuteReaderAsync())
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
                         while (await reader.ReadAsync())
                         {
                             response = MapToValue(reader);
+                            lista.Add(response);
+
                         }
                     }
 
-                    return response;
+                    return lista;
                 }
             }
         }
-        private List<Usuarios> MapToValue(SqlDataReader reader)
+        private Usuarios MapToValue(SqlDataReader reader)
         {
-            List<Usuarios> list = new List<Usuarios>();
-            Usuarios us = new Usuarios();
-            us.usuId = (int)reader["usuID"];
-            us.nombre = reader["nombre"].ToString();
-            us.apellido = reader["apellido"].ToString();
-            list.Add(us);
-            return list;
+            return new Usuarios
+            {
+                usuId = (int)reader["usuID"],
+                nombre = reader["nombre"].ToString(),
+                apellido = reader["apellido"].ToString()
+            };
         }
     }
 }

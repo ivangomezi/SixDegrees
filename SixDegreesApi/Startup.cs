@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Graph.Core;
 using SixDegressDatos;
 
 namespace SixDegreesApi
@@ -29,6 +30,9 @@ namespace SixDegreesApi
             services.AddControllers();
 
             services.AddScoped<UsuariosDatos>();
+
+            services.AddCors();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +46,13 @@ namespace SixDegreesApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(options =>
+            {
+                options.WithOrigins("http://localhost:4200");
+                options.AllowAnyMethod();
+                options.AllowAnyHeader();
+                options.AllowCredentials();
+            });
 
             app.UseAuthorization();
 

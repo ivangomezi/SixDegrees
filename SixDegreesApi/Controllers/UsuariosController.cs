@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SixDegressDatos;
 using SixDegreesEntidades;
+using System.Data;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -34,9 +35,9 @@ namespace SixDegreesApi.Controllers
             {
 
                 List<Usuarios> obj = new List<Usuarios>();
-                Usuarios obj_ = new Usuarios();
-                obj_.error = ex.Message.ToString();
-                obj.Add(obj_);
+                Usuarios us = new Usuarios();
+                us.error = ex.Message.ToString();
+                obj.Add(us);
                 return obj;
             }
 
