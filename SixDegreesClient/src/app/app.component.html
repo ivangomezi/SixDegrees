@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <th>
+        ID
+      </th>
+      <th>
+        Nombre
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let t of lista">
+      <td>{{t.usuID}}</td>
+      <td>{{t.nombre}} {{t.apellido}}</td>
+</tr>
+  </tbody>
+</table>
+
+
+
+<router-outlet></router-outlet>
